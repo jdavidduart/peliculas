@@ -1,0 +1,46 @@
+.searchresults{
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(223, 223, 223);
+
+}
+.container{
+    width: 50%;
+    height: 100%;
+    display: flex; 
+    align-items: top;
+    justify-content: center;
+    background-color: rgb(248, 248, 248);
+    box-shadow: 
+    inset 0px 11px 8px -10px rgb(151, 150, 150),
+    inset 0px -11px 8px -10px rgb(0, 0, 0);
+
+
+}
+
+.movieWanted{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.WantedHeader{
+    font-size: 17px;
+    margin: 0 0 8px;
+    font-weight: normal;
+}
+.subContainer{
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    width: 500px;
+    height: auto ;
+    display: flex; 
+    position: fixed;
+    flex-direction: column;
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 15px;
+}

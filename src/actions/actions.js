@@ -35,9 +35,3 @@ export function  getMovieDetail (id){
 }
 
 
-export function inputValue(text){
-    return{
-        type: "MOVIE_WANTED", 
-        payload: text 
-    }
-}

@@ -1,0 +1,66 @@
+.movieInfo{
+    display: flex;
+    margin-top: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+
+}
+
+.movieContainer{
+    background-color: black;
+    width: 800px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 15px;
+}
+.movieTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.poster img{
+    max-width: 170px;
+    height: auto;
+    margin-left: 14px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid rgb(212, 211, 211);
+
+}
+
+.subC{
+    display: flex;
+    flex-direction: row;
+}
+
+.starRating{
+    color:orange;
+    position: relative;
+    top: 4px;
+}
+
+.textRating{
+    font-size: 27px;
+    margin-left: 2px;
+}
+
+.textRating2{
+    font-size: 12px;
+}
+.textMovie{
+    color: white;
+    text-align: justify;
+}
+.textPoster{
+    margin-right: 10px;
+}

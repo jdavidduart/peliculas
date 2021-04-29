@@ -21,10 +21,6 @@ function Navbar(props) {
             history.push('/searchresults')
             settitle('')
         }
-        else{
-          return (<div className='popup'>soy alert</div>)
-            
-        }
     }
     const resetInput = () => {
         settitle('')

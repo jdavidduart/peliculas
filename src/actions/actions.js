@@ -1,12 +1,12 @@
 export function getMovies(titulo) {
     var total;
     return function(dispatch) {
-        return fetch("http://www.omdbapi.com/?apikey=20dac387&s=" + titulo)
+        return fetch("https://api.themoviedb.org/3/search/multi?api_key=547d4e708c1b1edbff45e5ce3d36034c&language=es&query=" + titulo)
         .then(response => response.json())
         .then(json => {
             total=json;
-            if(json.totalResults>10){
-            return fetch("http://www.omdbapi.com/?apikey=20dac387&s=" + titulo + '&page=2')
+            if(json.total_results>10){
+            return fetch("https://api.themoviedb.org/3/search/multi?api_key=547d4e708c1b1edbff45e5ce3d36034c&language=es&query=" + titulo + '&page=2')
             }
             else{
                 dispatch({ type: "GET_MOVIES", payload: total, title:titulo });
@@ -17,16 +17,16 @@ export function getMovies(titulo) {
         })
         .then(json => {
             if(json !==undefined){
-            total.Search=total.Search.concat(json.Search);
+            total.results=total.results.concat(json.results);
             dispatch({ type: "GET_MOVIES", payload: total, title:titulo })
             }
         })
     };
 }
     
-export function  getMovieDetail (id){       
-    return function(dispatch) {                                             //se retorna una funcion para que pueda ejecutarse de manera asincronica
-        return fetch("http://www.omdbapi.com/?apikey=20dac387&i=" + id)
+export function  getMovieDetail (type,movieId){       
+    return function(dispatch) {                                       
+        return fetch("https://api.themoviedb.org/3/"+type+"/"+movieId+"?api_key=547d4e708c1b1edbff45e5ce3d36034c&language=es")
         .then(response => response.json())
         .then(json => {
             dispatch({ type: "GET_MOVIE_DETAIL", payload: json });

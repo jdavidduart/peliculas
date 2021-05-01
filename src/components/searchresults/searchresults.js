@@ -3,16 +3,18 @@ import { connect } from "react-redux";
 import './searchresults.css'
 import { AiFillCaretRight } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+
 function Searchresults (props){
+
     var movies=function(){
-        
-       if(props.results !== undefined){ 
+
+        if(props.results.length>0){ 
             return( 
                 <div>
                     <h3><span className='WantedHeader'>Results for </span><span className="movieWanted">"{props.movieWanted}"</span></h3> 
                     {props.results?.map(movie =>(
-                            <div key={movie.imdbID}>
-                                <Link to={`movie/${movie.imdbID}`}><p><AiFillCaretRight size='10px'/>{movie.Title}</p></Link>
+                            <div key={movie.id}>
+                                <Link to={`${movie.media_type}/${movie.id}`}><div><AiFillCaretRight size='10px'/>{movie.name}</div></Link>
                             </div>
                             )
                         )}
@@ -21,12 +23,12 @@ function Searchresults (props){
         }else{
             return (
                 <div>
-                    <h3>Results not found</h3>
+                    <h3>Resultados no encontrados</h3>
                     <ul>
-                        <li>Verify that you have not had any spelling errors such as: "Abengers" instead of "Avengers" "ironman" instead of "iron man"</li>
-                        <li>Try again, searching for only one word.</li>
+                        <li>Verifica que no hayas cometidos errores ortograficos como por ejemplo "Bengadores" en vez de "Vengadores", "ironman" instead of "iron man"</li>
+                        <li>Intenta otra vez, buscando por una sola palabra.</li>
                     </ul>
-                    <p><span className='WantedHeader'>You searched: </span><span className="movieWanted">"{props.movieWanted}"</span></p>
+                    <p><span className='WantedHeader'>Tu busqueda: </span><span className="movieWanted">"{props.movieWanted}"</span></p>
                 </div>
                 )
         }

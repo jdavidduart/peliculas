@@ -21,7 +21,7 @@ function App() {
           component={Searchresults}
         />
          <Route 
-          path="/movie/:id" 
+          exact path="/:type/:id" 
           component={Movie}
          />
 

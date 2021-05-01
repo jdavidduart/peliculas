@@ -9,7 +9,12 @@ const initialState = {
     if (action.type === "GET_MOVIES") {
         return {
           ...state,
-          moviesLoaded: action.payload.Search,                 //se sobreescribe para no guardar las busquedas anteriores
+          moviesLoaded: action.payload.results.map(movie =>{
+            if(!movie.name){
+              movie.name=movie.title
+            }
+            return movie
+          }),                 //se sobreescribe para no guardar las busquedas anteriores
           movieWanted: action.title
         };
     }

@@ -1,11 +1,20 @@
 import './App.css';
-import React from 'react';
+import {useDispatch} from "react-redux";
+import React, {useEffect} from 'react';
 import { Route } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Searchresults from './components/searchresults/searchresults';
 import Movie from './components/Movie/movie';
 import Home from './components/Home/Home'
+import { getLatest } from './actions/actions';
+
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getLatest())
+
+  }, []);
   return (
     <React.Fragment>
         <Route

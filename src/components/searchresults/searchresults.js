@@ -10,14 +10,17 @@ function Searchresults (props){
 
         if(props.results.length>0){ 
             return( 
-                <div>
-                    <h3><span className='WantedHeader'>Results for </span><span className="movieWanted">"{props.movieWanted}"</span></h3> 
-                    {props.results?.map(movie =>(
-                            <div key={movie.id}>
-                                <Link to={`${movie.media_type}/${movie.id}`}><div><AiFillCaretRight size='10px'/>{movie.name}</div></Link>
-                            </div>
-                            )
-                        )}
+                <div>{  
+                        <div>
+                            <h3><span className='WantedHeader'>Results for </span><span className="movieWanted">"{props.movieWanted}"</span></h3> 
+                            {props.results?.map(movie =>(
+                                    <div key={movie.id}>
+                                        <Link to={`${movie.media_type}/${movie.id}`}><div><AiFillCaretRight size='10px'/>{movie.name}</div></Link>
+                                    </div>
+                                    )
+                                )}
+                        </div>
+                    }
                 </div>
                 )
         }else{
@@ -25,7 +28,7 @@ function Searchresults (props){
                 <div>
                     <h3>Resultados no encontrados</h3>
                     <ul>
-                        <li>Verifica que no hayas cometidos errores ortograficos como por ejemplo "Bengadores" en vez de "Vengadores", "ironman" instead of "iron man"</li>
+                        <li>Verifica que no hayas cometidos errores ortograficos como por ejemplo "Bengadores" en vez de "Vengadores", "ironman" en vez de "iron man"</li>
                         <li>Intenta otra vez, buscando por una sola palabra.</li>
                     </ul>
                     <p><span className='WantedHeader'>Tu busqueda: </span><span className="movieWanted">"{props.movieWanted}"</span></p>
@@ -50,10 +53,12 @@ function Searchresults (props){
 function mapStateToProps(state) {         //se usa para seleccionar parte de los datos de la tienda y luego retornarlos en un obj, 
     return {                                //en este caso state.moviesLoaded y se renombra con movies.  mapStateToProps se actualiza cada vez que cambia el estado de tienda
       results: state.moviesLoaded,
-      movieWanted: state.movieWanted
+      movieWanted: state.movieWanted,
+      loading: state.loading
     };
   }
+
                                                                                           
   export default connect(
-    mapStateToProps,null
+    mapStateToProps, null
   )(Searchresults);

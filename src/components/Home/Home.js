@@ -1,16 +1,24 @@
-import React from 'react';
-import './Home.css'
-import {Carousel} from '3d-react-carousal';
-export default function Home(){
-    let slides = [
-        <img  src="https://image.tmdb.org/t/p/w300//6Cn5Lx9kqhXzTNV5QXwZ3RW5pBg.jpg"  alt="1" />,
-        <img  src="https://image.tmdb.org/t/p/w300//6Cn5Lx9kqhXzTNV5QXwZ3RW5pBg.jpg" alt="2" />  ,
-        <img  src="https://image.tmdb.org/t/p/w300//6Cn5Lx9kqhXzTNV5QXwZ3RW5pBg.jpg" alt="3" />  ,
-        <img  src="https://image.tmdb.org/t/p/w300//6Cn5Lx9kqhXzTNV5QXwZ3RW5pBg.jpg" alt="4" />  ,
-        <img src="https://image.tmdb.org/t/p/w300//6Cn5Lx9kqhXzTNV5QXwZ3RW5pBg.jpg" alt="5" />   ];
-    return(
-        <div className='homeContainer'>
-            <Carousel slides={slides} autoplay={true} interval={5000}/>
+import React from "react";
+import { useSelector } from "react-redux";
+import "./Home.css";
+import { Carousel } from "3d-react-carousal";
+import Loading from "../loading/loading"
+function Home() {
+  const movieImg = useSelector((store) => store.movieImg);
+  const loading = useSelector((store) => store.loading);
+
+  if(loading){
+    return <Loading />
+  }else{
+    return (
+      <div className="homeContainer">
+        <h3 className="homeText">Peliculas recientemente agregadas</h3>
+        <div className="homeText"></div>
+         {movieImg.length>1? <Carousel slides={movieImg} autoplay={true} interval={5000} /> : <div/>} 
         </div>
-    )
+    );
+  }
 }
+
+
+export default Home;

@@ -3,32 +3,38 @@ import { connect} from 'react-redux';
 import { getMovieDetail } from '../../actions/actions';
 import './movie.css';
 import { RiStarFill } from "react-icons/ri";
-function Movie({movie,match,getDetail}){
+function Movie({movie, match, getDetail, loading}){
   const movieId=match.params.id;
   const type=match.params.type;
   useEffect(()=>{
-      getDetail(type,movieId)
-  },[movieId,getDetail,type])
+    getDetail(type,movieId)
+      
+  },[movieId, getDetail, type])
   return (
     <div className='movieInfo'>
       <div className='movieContainer'>
+        {
+         loading ? <h2 className="loading">Cargando</h2> : 
         <div>
-          <h3 className='movieTitle'>{movie.name? movie.name : movie.title}</h3>
-        </div>
-        <div className='subC'>
-          <div className='poster'><img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt=''></img></div>
-          <div className='textPoster'>
-            <div className='textMovie'>{movie.overview}</div>
-              <div className='textMovie'>
-              <div>Fecha de lanzamiento: {movie.release_date? movie.release_date: movie.first_air_date} </div>
-              <div>Genero: {movie.genres?.map( (genre,index) => <span>{index===movie.genres.length-1? genre.name +'.' : genre.name+", "}</span>)} </div>
-              <div>{movie.seasons? movie.seasons.length + " temporadas" : ""} </div>
-              <div>{movie.original_title ? "Titulo original: " + movie.original_title  : ""} </div>
-              <div>{movie.original_name ? "Titulo original: " + movie.original_name  : ""} </div>
-              </div>
-            <p className='textMovie'><RiStarFill size='30px' className='starRating'/><span className='textRating'>{movie.vote_average}</span><span className='textRating2'>/10</span></p>
+          <div>
+            <h3 className='movieTitle'>{movie.name? movie.name : movie.title}</h3>
+          </div>
+          <div className='subC'>
+            <div className='poster'><img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt=''></img></div>
+            <div className='textPoster'>
+              <div className='textMovie'>{movie.overview}</div>
+                <div className='textMovie'>
+                <div>Fecha de lanzamiento: {movie.release_date? movie.release_date: movie.first_air_date} </div>
+                <div>Genero: {movie.genres?.map( (genre,index) => <span>{index===movie.genres.length-1? genre.name +'.' : genre.name+", "}</span>)} </div>
+                <div>{movie.seasons? movie.seasons.length + " temporadas" : ""} </div>
+                <div>{movie.original_title ? "Titulo original: " + movie.original_title  : ""} </div>
+                <div>{movie.original_name ? "Titulo original: " + movie.original_name  : ""} </div>
+                </div>
+              <p className='textMovie'><RiStarFill size='30px' className='starRating'/><span className='textRating'>{movie.vote_average}</span><span className='textRating2'>/10</span></p>
+            </div>
           </div>
         </div>
+        } 
       </div>
     </div>
   )
@@ -37,12 +43,13 @@ function Movie({movie,match,getDetail}){
 function mapStateToProps(state) {
   return {
     movie: state.movieDetail,
+    loading: state.loading
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getDetail: (type,idMovie) => dispatch(getMovieDetail(type, idMovie))
+    getDetail: (type,idMovie) => dispatch(getMovieDetail(type, idMovie)),
   };
 }
 
